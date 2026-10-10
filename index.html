@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GRR | Hierarquia</title>
+<style>
+:root{--bg:#f3f6fb;--panel:#fff;--ink:#18243a;--muted:#66748a;--line:#dfe6f0;--navy:#101b35;--blue:#244a83;--accent:#d6ad61;--green:#177245;--red:#a63232;--shadow:0 12px 30px #17294a0d}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 Inter,system-ui,-apple-system,Segoe UI,Arial,sans-serif}body.dark{--bg:#0c1220;--panel:#151e30;--ink:#edf3ff;--muted:#a6b3c9;--line:#2a3850;--navy:#080e1b;--blue:#7da9ed;--accent:#e0bb70;--green:#61ce96;--red:#ff8a8a;--shadow:0 12px 30px #0003}
+header{background:linear-gradient(115deg,var(--navy),#1b3156);color:#fff;padding:18px clamp(14px,4vw,42px);display:flex;align-items:center;gap:14px;flex-wrap:wrap;box-shadow:0 8px 24px #0c19352b}
+.shield{width:48px;height:52px;color:#e4c47f;flex:none}.brand{font-weight:850;letter-spacing:.09em;font-size:13px}.brand small{display:block;color:#b8c7e0;font-weight:500;letter-spacing:.14em;font-size:10px;margin-top:3px}.header-actions{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap}
+nav{display:flex;gap:7px;width:100%;flex-wrap:wrap}nav button{background:transparent;border:1px solid #ffffff35;color:#dce7fb;padding:9px 13px;border-radius:10px;cursor:pointer;font-weight:650}nav button.active,nav button:hover{background:#ffffff18;color:white;border-color:#ffffff65}
+main{max-width:1200px;margin:28px auto;padding:0 18px 48px}.pagehead{display:flex;align-items:flex-end;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-bottom:20px}.eyebrow{font-size:10px;letter-spacing:.18em;color:var(--blue);font-weight:850}.pagehead h1{margin:3px 0;font-size:clamp(25px,4vw,34px);letter-spacing:-.035em}.muted{color:var(--muted)}.card{background:var(--panel);border:1px solid var(--line);border-radius:17px;box-shadow:var(--shadow);overflow:hidden}.cardhead{padding:16px 19px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}.cardhead h2{margin:0;font-size:16px}.cardbody{padding:18px}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:17px}.full{grid-column:1/-1}.btn{border:1px solid var(--line);background:var(--panel);color:var(--ink);padding:9px 13px;border-radius:10px;font-weight:700;cursor:pointer;transition:.15s}.btn:hover{transform:translateY(-1px);filter:brightness(.98)}.primary{background:var(--navy);border-color:var(--navy);color:#fff}.danger{color:var(--red);border-color:color-mix(in srgb,var(--red) 40%,var(--line))}.gold{background:#e4c47f;color:#17233b;border-color:#e4c47f}.small{padding:5px 8px;font-size:12px}.field{display:flex;flex-direction:column;gap:5px;margin-bottom:12px}.field label{font-weight:750;font-size:12px;color:var(--muted)}input,textarea,select{width:100%;background:var(--panel);color:var(--ink);border:1px solid var(--line);border-radius:10px;padding:10px 11px;font:inherit;outline:none}input:focus,textarea:focus,select:focus{border-color:var(--blue);box-shadow:0 0 0 3px color-mix(in srgb,var(--blue) 15%,transparent)}textarea{min-height:80px;resize:vertical}.actions{display:flex;gap:7px;flex-wrap:wrap}.toolbar{display:flex;gap:8px;flex-wrap:wrap}.rank-list{display:grid;gap:28px}.rank-card{display:block;border:0;border-radius:0;padding:0;background:transparent;box-shadow:none;overflow:visible}.rank-section-head{display:flex;align-items:center;justify-content:space-between;gap:12px;border-bottom:2px solid var(--line);padding:0 0 12px;margin-bottom:16px}.rank-title{font-weight:850;font-size:clamp(19px,2.3vw,25px);letter-spacing:-.025em}.rank-count{font-size:11px;letter-spacing:.13em;color:var(--muted);white-space:nowrap}.member-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.member-card{background:var(--panel);border:1px solid #d7e2f5;border-radius:11px;padding:16px;min-width:0;box-shadow:none}.member-top{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-bottom:5px}.member-name{font-size:15px;font-weight:650;overflow-wrap:anywhere}.status-pill{display:inline-flex;align-items:center;border:1px solid #9bf0c8;background:#effdf6;color:#08784d;border-radius:999px;padding:2px 9px;font-size:10px;line-height:1.5}.member-meta{display:flex;gap:7px;flex-wrap:wrap;margin:4px 0 12px}.meta-chip{display:inline-flex;border:1px solid #d7e2f5;background:#f2f6fd;border-radius:4px;padding:3px 8px;font-size:10px;color:#29416a}.member-toggle{width:100%;display:flex;justify-content:space-between;align-items:center;text-align:left;background:#f1f5fc;border:1px solid #d7e2f5;color:#142747;border-radius:9px;padding:9px 11px;font-size:11px;font-weight:650;cursor:pointer}.member-details{border-top:1px solid var(--line);margin-top:11px;padding-top:10px;display:grid;grid-template-columns:1fr 1fr;gap:10px}.detail-item{font-size:12px;min-width:0;overflow-wrap:anywhere}.detail-label{display:block;color:var(--muted);font-size:10px;letter-spacing:.04em;text-transform:uppercase;margin-bottom:2px}.rank-admin-actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:12px}.rank-add{margin-top:12px}.rank-number{height:54px;width:54px;border-radius:13px;background:color-mix(in srgb,var(--blue) 12%,var(--panel));display:grid;place-items:center;color:var(--blue);font-weight:900;font-size:21px}.rank-title{font-weight:850;font-size:17px}.rank-desc{color:var(--muted);font-size:13px;white-space:pre-wrap}.member-pill{display:inline-flex;align-items:center;border:1px solid var(--line);border-radius:999px;padding:5px 9px;margin:4px 5px 0 0;font-size:12px}.member-pill button{border:0;background:none;color:var(--red);font-weight:900;cursor:pointer;margin-left:5px}.empty{border:1px dashed var(--line);border-radius:14px;padding:30px;text-align:center;color:var(--muted)}.note{border-left:3px solid var(--accent);padding:10px 13px;background:color-mix(in srgb,var(--accent) 10%,var(--panel));border-radius:0 10px 10px 0;color:var(--muted);font-size:13px}.hidden{display:none!important}.foot{text-align:center;padding:22px;color:var(--muted);font-size:11px;letter-spacing:.12em}.toast{position:fixed;bottom:18px;right:18px;max-width:min(400px,calc(100% - 36px));background:var(--navy);color:white;padding:13px 17px;border-radius:12px;box-shadow:var(--shadow);z-index:10}
+@media(max-width:900px){.member-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:600px){.grid,.member-grid{grid-template-columns:1fr}.full{grid-column:auto}.member-details{grid-template-columns:1fr 1fr}.header-actions{margin-left:0}main{padding-left:12px;padding-right:12px}}
+</style>
+</head>
+<body>
+<header>
+<svg class="shield" viewBox="0 0 48 52" aria-hidden="true"><path d="M24 3 42 10v14c0 12-7.3 20.4-18 25C13.3 44.4 6 36 6 24V10L24 3Z" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="m15 25 6 6 13-14" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+<div class="brand">GRUPO DE RESPOSTA RÁPIDA<small>SISTEMA DE HIERARQUIA</small></div>
+<div class="header-actions"><span id="liveStatus" style="color:#dce7fb;font-size:12px">Conectando ao Supabase…</span><span id="sessionLabel" style="color:#dce7fb;font-size:12px">Visitante</span><button class="btn" id="loginBtn">Login administrativo</button><button class="btn hidden" id="logoutBtn">Sair</button><button class="btn" id="themeBtn">☾ Tema</button></div>
+<nav><button class="active" data-page="hierarquia">Hierarquia</button><button data-page="editar" id="editNav" class="hidden">Painel administrativo</button><button data-page="organograma">Organograma</button></nav>
+</header>
+<main id="app"></main>
+<div class="foot">GRR · GRUPO DE RESPOSTA RÁPIDA · HIERARQUIA ORGANIZACIONAL</div>
+
+<div id="loginModal" class="hidden" style="position:fixed;inset:0;background:#061022bb;z-index:20;display:grid;place-items:center;padding:18px">
+ <section class="card" style="width:min(440px,100%)"><div class="cardhead"><h2>Login administrativo GRR</h2><button class="btn small" onclick="closeLogin()">Fechar</button></div><div class="cardbody">
+ <form id="loginForm"><div class="field"><label>E-mail</label><input name="email" type="email" required autocomplete="username"></div><div class="field"><label>Senha</label><input name="password" type="password" required autocomplete="current-password"></div><button class="btn primary" type="submit">Entrar</button><p class="muted" style="font-size:12px;margin-top:12px">Somente contas cadastradas como administradoras no Supabase podem editar a hierarquia.</p></form>
+ </div></section>
+</div>
+<div id="toast" class="toast hidden"></div>
+<div class="foot">GRR · GRUPO DE RESPOSTA RÁPIDA · HIERARQUIA ORGANIZACIONAL</div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+'use strict';
+const SUPABASE_URL='https://ezhmrhcqwkwlryezubwd.supabase.co';
+const SUPABASE_KEY='sb_publishable_5TVAfjNt_I5MnPpUWmBXZg_BiLKb9xu';
+const sb=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
+const starter=[
+{ id:'r1',nome:'Diretor',descricao:'Direção geral do Grupo de Resposta Rápida.',membros:[]},
+{ id:'r2',nome:'Vice Diretor',descricao:'Auxilia o Diretor e o substitui quando necessário.',membros:[]},
+{ id:'r3',nome:'Coordenador',descricao:'Coordena equipes, atividades e procedimentos operacionais.',membros:[]},
+{ id:'r4',nome:'Superintendente',descricao:'Supervisiona setores, equipes e operações.',membros:[]},
+{ id:'r5',nome:'Superintendente Adjunto',descricao:'Auxilia a Superintendência.',membros:[]},
+{ id:'r6',nome:'Inspetor Chefe',descricao:'Lidera e supervisiona os integrantes sob sua responsabilidade.',membros:[]},
+{ id:'r7',nome:'Inspetor',descricao:'Fiscaliza e orienta as atividades operacionais.',membros:[]},
+{ id:'r8',nome:'Inspetor Auxiliar',descricao:'Auxilia nas atividades de supervisão.',membros:[]},
+{ id:'r9',nome:'Agente de Classe Especial',descricao:'Agente de classe especial do GRR.',membros:[]},
+{ id:'r10',nome:'Agente de 1ª Classe',descricao:'Agente de primeira classe do GRR.',membros:[]},
+{ id:'r11',nome:'Agente de 2ª Classe',descricao:'Agente de segunda classe do GRR.',membros:[]},
+{ id:'r12',nome:'Agente de 3ª Classe',descricao:'Agente de terceira classe do GRR.',membros:[]},
+{ id:'r13',nome:'Aluno',descricao:'Integrante em formação.',membros:[]}
+];
+let ranks=structuredClone(starter), page='hierarquia', isAdmin=false, user=null, loading=true, saveInProgress=false, pendingSave=false, localEditAt=0;
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function toast(s){const t=$('#toast');t.textContent=s;t.classList.remove('hidden');setTimeout(()=>t.classList.add('hidden'),3000)}
+function head(k,t,d,actions=''){return `<div class="pagehead"><div><div class="eyebrow">${k}</div><h1>${t}</h1><div class="muted">${d}</div></div>${actions}</div>`}
+async function checkAdmin(session){
+ user=session?.user||null;isAdmin=false;
+ if(user){const {data,error}=await sb.from('grr_admins').select('user_id').eq('user_id',user.id).maybeSingle();isAdmin=!!data&&!error}
+ $('#sessionLabel').textContent=isAdmin?'Administrador conectado':user?'Conta sem permissão administrativa':'Visitante';
+ $('#loginBtn').classList.toggle('hidden',!!user);$('#logoutBtn').classList.toggle('hidden',!user);$('#editNav').classList.toggle('hidden',!isAdmin);
+ if(page==='editar'&&!isAdmin)page='hierarquia';render();
+}
+async function loadData(){
+ const {data,error}=await sb.from('grr_hierarquia').select('ranks').eq('id',1).maybeSingle();
+ if(error){console.error(error);$('#liveStatus').textContent='Supabase: configurar banco';toast('Não foi possível carregar a hierarquia. Execute setup_supabase_GRR_com_admin.sql no Supabase.');return}
+ if(data?.ranks && Array.isArray(data.ranks)) ranks=data.ranks;
+ else if(isAdmin){const {error:initError}=await sb.from('grr_hierarquia').upsert({id:1,ranks,updated_at:new Date().toISOString()});if(initError)console.error('Falha ao inicializar hierarquia:',initError)}
+ $('#liveStatus').textContent='Supabase conectado';render();
+}
+async function saveData(showToast=true){
+ if(!isAdmin){if(showToast)toast('Somente administradores podem editar.');return false}
+ if(saveInProgress){pendingSave=true;return true}
+ saveInProgress=true;
+ const snapshot=structuredClone(ranks);
+ $('#liveStatus').textContent='Salvando no Supabase…';
+ const {error}=await sb.from('grr_hierarquia').upsert({id:1,ranks:snapshot,updated_at:new Date().toISOString()});
+ saveInProgress=false;
+ if(error){console.error(error);$('#liveStatus').textContent='Supabase: erro ao salvar';if(showToast)toast('Erro ao salvar no Supabase: '+error.message);return false}
+ $('#liveStatus').textContent='Supabase conectado · alterações salvas';
+ if(showToast)toast('Salvo no Supabase. Os outros acessos recebem a atualização em tempo real.');
+ if(pendingSave){pendingSave=false;return saveData(showToast)}
+ return true;
+}
+function render(){document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('active',b.dataset.page===page));if(page==='hierarquia')renderHierarchy();else if(page==='editar')renderEditor();else renderOrg()}
+function memberCard(m,rank,i){
+ const detailsId=`details-${String(rank.id).replace(/[^a-zA-Z0-9_-]/g,'')}-${String(m.id||i).replace(/[^a-zA-Z0-9_-]/g,'')}`;
+ const occurrences=m.ocorrencias||[];
+ const actions=Array.isArray(m.acoes)?m.acoes.length:Number(m.acoes_count||m.acoes||0)||0;
+ const status=String(m.situacao||m.status||'Ativo');
+ const rg=m.rg||m.identidade||'Não informado';
+ const promotion=m.promocao?new Date(m.promocao+'T12:00:00').toLocaleDateString('pt-BR'):'Sem data registrada';
+ const tenure=m.tempoCargo||m.tempo_no_cargo||'Sem data registrada';
+ return `<article class="member-card"><div class="member-top"><span class="member-name">${esc(m.nome)}</span><span class="status-pill">${esc(status.toUpperCase())}</span></div><div class="member-meta"><span class="meta-chip">RG&nbsp; ${esc(rg)}</span><span class="meta-chip">${actions} ${actions===1?'ação':'ações'}</span></div><button class="member-toggle" type="button" aria-expanded="false" aria-controls="${detailsId}" onclick="toggleMemberDetails(this,'${detailsId}')"><span>VER DETALHES</span><b>+</b></button><div class="member-details hidden" id="${detailsId}"><div class="detail-item"><span class="detail-label">Punições</span>${occurrences.length?occurrences.map(o=>`${esc(o.tipo||'Ocorrência')}${o.data?' · '+esc(new Date(o.data+'T12:00:00').toLocaleDateString('pt-BR')):''}`).join('<br>'):'Sem punições'}</div><div class="detail-item"><span class="detail-label">Última promoção</span>${promotion}</div><div class="detail-item"><span class="detail-label">Tempo no cargo</span>${esc(tenure)}</div><div class="detail-item"><span class="detail-label">Ações registradas</span>${actions} ${actions===1?'ação':'ações'}${Array.isArray(m.acoes)&&m.acoes.some(a=>typeof a==='object'&&a.descricao)?`<div style="margin-top:5px">${m.acoes.filter(a=>typeof a==='object'&&a.descricao).map(a=>`• ${esc(a.descricao)}${a.data?' · '+esc(new Date(a.data+'T12:00:00').toLocaleDateString('pt-BR')):''}`).join('<br>')}</div>`:''}</div><div class="detail-item"><span class="detail-label">Situação</span>${esc(status)}</div>${occurrences.some(o=>o.detalhe)?`<div class="detail-item"><span class="detail-label">Observações</span>${occurrences.filter(o=>o.detalhe).map(o=>esc(o.detalhe)).join('<br>')}</div>`:''}</div>${isAdmin?`<details style="margin-top:10px"><summary style="cursor:pointer;color:var(--blue);font-weight:700;font-size:12px">Editar dados do membro</summary><form onsubmit="updateMember(event,'${rank.id}','${m.id}')" style="margin-top:12px"><div class="field"><label>Nome completo</label><input name="nome" required value="${esc(m.nome)}"></div><div class="field"><label>RG</label><input name="rg" value="${esc(m.rg||'')}" maxlength="30"></div><div class="field"><label>Situação</label><select name="situacao"><option ${status.toLowerCase()==='ativo'?'selected':''}>Ativo</option><option ${status.toLowerCase()==='inativo'?'selected':''}>Inativo</option><option ${status.toLowerCase()==='afastado'?'selected':''}>Afastado</option></select></div><div class="field"><label>Última data de promoção</label><input name="promocao" type="date" value="${esc(m.promocao||'')}"></div><div class="field"><label>Tempo no cargo (opcional)</label><input name="tempoCargo" value="${esc(m.tempoCargo||'')}" placeholder="Ex.: 2 meses"></div><div class="field"><label>Registrar advertência / PAD</label><select name="tipo"><option value="">Não adicionar ocorrência</option><option>Advertência verbal</option><option>PAD</option></select></div><div class="field"><label>Data da ocorrência</label><input name="data" type="date"></div><div class="field"><label>Observação da ocorrência</label><input name="detalhe" maxlength="300" placeholder="Detalhes da punição, se houver"></div><div class="field"><label>Registrar ação (opcional)</label><input name="acaoDescricao" maxlength="300" placeholder="Ex.: patrulhamento, operação, relatório"></div><div class="field"><label>Data da ação</label><input name="acaoData" type="date"></div><div class="actions"><button class="btn primary" type="submit">Salvar dados</button><button class="btn danger small" type="button" onclick="removeMember('${rank.id}','${m.id}')">Remover membro</button></div></form></details>`:''}</article>`
+}
+function toggleMemberDetails(button,id){const box=document.getElementById(id);if(!box)return;const open=box.classList.toggle('hidden')===false;button.setAttribute('aria-expanded',String(open));button.querySelector('span').textContent=open?'OCULTAR DETALHES':'VER DETALHES';button.querySelector('b').textContent=open?'−':'+'}
+function renderHierarchy(){
+ $('#app').innerHTML=head('ORGANIZAÇÃO','Hierarquia GRR','Membros agrupados por patente, conforme a hierarquia do GRR.')+`<div class="note" style="margin-bottom:22px">${isAdmin?'Você está conectado como administrador e pode editar os dados.':'Apenas administradores autenticados podem alterar dados.'}</div><div class="rank-list">${ranks.map((r,i)=>`<section class="rank-card"><div class="rank-section-head"><h2 class="rank-title">${esc(r.nome)}</h2><span class="rank-count">${(r.membros||[]).length} ${(r.membros||[]).length===1?'INTEGRANTE':'INTEGRANTES'}</span></div>${r.descricao?`<div class="rank-desc" style="margin:-5px 0 12px">${esc(r.descricao)}</div>`:''}<div class="member-grid">${(r.membros||[]).map((m,j)=>memberCard(m,r,j)).join('')||'<div class="empty" style="grid-column:1/-1;padding:18px">Nenhum integrante cadastrado nesta patente.</div>'}</div>${isAdmin?`<div class="rank-admin-actions"><button class="btn small" onclick="moveRank('${r.id}',-1)" ${i===0?'disabled':''}>↑ Mover para cima</button><button class="btn small" onclick="moveRank('${r.id}',1)" ${i===ranks.length-1?'disabled':''}>↓ Mover para baixo</button><button class="btn small" onclick="editRank('${r.id}')">Editar patente</button></div><details class="rank-add"><summary style="cursor:pointer;color:var(--blue);font-weight:700">Adicionar membro</summary><form onsubmit="addMember(event,'${r.id}')" style="margin-top:12px;max-width:600px"><div class="field"><label>Nome completo</label><input name="nome" required maxlength="120"></div><div class="field"><label>RG</label><input name="rg" maxlength="30"></div><div class="field"><label>Situação</label><select name="situacao"><option>Ativo</option><option>Inativo</option><option>Afastado</option></select></div><div class="field"><label>Última data de promoção</label><input name="promocao" type="date"></div><div class="field"><label>Tempo no cargo (opcional)</label><input name="tempoCargo" placeholder="Ex.: 2 meses"></div><div class="field"><label>Ocorrência disciplinar</label><select name="tipo"><option value="">Nenhuma</option><option>Advertência verbal</option><option>PAD</option></select></div><div class="field"><label>Data da ocorrência</label><input name="data" type="date"></div><div class="field"><label>Detalhes / observação da punição</label><input name="detalhe" maxlength="300"></div><div class="field"><label>Ação registrada (opcional)</label><input name="acaoDescricao" maxlength="300" placeholder="Ex.: patrulhamento, operação, relatório"></div><div class="field"><label>Data da ação</label><input name="acaoData" type="date"></div><button class="btn primary" type="submit">Adicionar membro</button></form></details>`:''}</section>`).join('')}</div>`
+}
+function renderEditor(){
+ if(!isAdmin){page='hierarquia';renderHierarchy();return}
+ let r=ranks.find(x=>x.id===editId);
+ $('#app').innerHTML=head('PAINEL ADMINISTRATIVO','Gerenciar hierarquia','Somente administradores autenticados podem editar, adicionar ou remover patentes.')+`<div class="grid"><section class="card"><div class="cardhead"><h2>${r?'Editar patente':'Adicionar patente'}</h2></div><div class="cardbody"><form id="rankForm"><div class="field"><label>Nome da patente</label><input name="nome" required maxlength="100" value="${esc(r?.nome||'')}" ${r?'data-autosave-rank="'+esc(r.id)+'"':''}></div><div class="field"><label>Descrição</label><textarea name="descricao">${esc(r?.descricao||'')}</textarea></div><div class="actions"><button class="btn primary" type="submit">Salvar patente</button><button class="btn" type="button" onclick="editId=null;renderEditor()">Nova patente</button>${r?`<button class="btn danger" type="button" onclick="deleteRank('${r.id}')">Remover patente</button>`:''}</div></form></div></section><section class="card"><div class="cardhead"><h2>Patentes cadastradas</h2><button class="btn primary" onclick="editId=null;renderEditor()">Adicionar patente</button></div><div class="cardbody">${ranks.map((x,i)=>`<div class="rank-card" style="margin-bottom:8px;grid-template-columns:42px 1fr auto"><div class="rank-number" style="width:38px;height:38px">${i+1}</div><div><b>${esc(x.nome)}</b><div class="muted">${(x.membros||[]).length} membro(s)</div></div><button class="btn small" onclick="editRank('${x.id}')">Abrir</button></div>`).join('')}</div></section></div>`;
+ const rankNameInput=$('#rankForm [name="nome"]');
+ if(r && rankNameInput){
+  let nameTimer;
+  rankNameInput.addEventListener('input',()=>{
+   localEditAt=Date.now();
+   const typedName=rankNameInput.value.trim();
+   clearTimeout(nameTimer);
+   if(!typedName)return;
+   nameTimer=setTimeout(async()=>{
+    const current=ranks.find(x=>x.id===r.id);
+    if(!current || rankNameInput.value.trim()!==typedName)return;
+    current.nome=typedName;
+    await saveData(false);
+   },700);
+  });
+ }
+ $('#rankForm').onsubmit=async e=>{e.preventDefault();let f=new FormData(e.currentTarget),d={nome:String(f.get('nome')).trim(),descricao:String(f.get('descricao')).trim()};if(r)Object.assign(r,d);else ranks.push({id:crypto.randomUUID(),...d,membros:[]});await saveData();editId=null;renderEditor()}
+}
+function renderOrg(){
+ $('#app').innerHTML=head('VISÃO VISUAL','Organograma GRR','Visualização da estrutura hierárquica e seus integrantes.')+`<div class="grid">${ranks.map((r,i)=>`<section class="card"><div class="cardhead"><h2><span style="color:var(--accent)">${String(i+1).padStart(2,'0')}</span> · ${esc(r.nome)}</h2></div><div class="cardbody">${(r.membros||[]).map(m=>`<div class="member-pill">${esc(m.nome)}${m.promocao?' · promoção '+esc(new Date(m.promocao+'T12:00:00').toLocaleDateString('pt-BR')):''}</div>`).join('')||'<span class="muted">Sem integrantes</span>'}</div></section>`).join('')}</div>`
+}
+function closeLogin(){$('#loginModal').classList.add('hidden')}
+function openLogin(){$('#loginModal').classList.remove('hidden')}
+let editId=null;
+async function addMember(e,rid){e.preventDefault();if(!isAdmin)return;const f=new FormData(e.currentTarget),tipo=String(f.get('tipo')||''),m={id:crypto.randomUUID(),nome:String(f.get('nome')).trim(),rg:String(f.get('rg')||'').trim(),situacao:String(f.get('situacao')||'Ativo'),tempoCargo:String(f.get('tempoCargo')||'').trim(),promocao:String(f.get('promocao')||''),ocorrencias:[],acoes:[]};if(tipo)m.ocorrencias.push({id:crypto.randomUUID(),tipo,data:String(f.get('data')||''),detalhe:String(f.get('detalhe')||'').trim()});const acaoDescricao=String(f.get('acaoDescricao')||'').trim();if(acaoDescricao)m.acoes.push({id:crypto.randomUUID(),descricao:acaoDescricao,data:String(f.get('acaoData')||'')});const r=ranks.find(x=>x.id===rid);if(!r)return;r.membros.push(m);await saveData();render()}
+async function updateMember(e,rid,mid){e.preventDefault();if(!isAdmin)return;const f=new FormData(e.currentTarget),r=ranks.find(x=>x.id===rid),m=r?.membros.find(x=>x.id===mid);if(!m)return;m.nome=String(f.get('nome')).trim();m.rg=String(f.get('rg')||'').trim();m.situacao=String(f.get('situacao')||'Ativo');m.tempoCargo=String(f.get('tempoCargo')||'').trim();m.promocao=String(f.get('promocao')||'');const tipo=String(f.get('tipo')||'');if(tipo)m.ocorrencias.push({id:crypto.randomUUID(),tipo,data:String(f.get('data')||''),detalhe:String(f.get('detalhe')||'').trim()});const acaoDescricao=String(f.get('acaoDescricao')||'').trim();if(acaoDescricao){if(!Array.isArray(m.acoes))m.acoes=[];m.acoes.push({id:crypto.randomUUID(),descricao:acaoDescricao,data:String(f.get('acaoData')||'')})}await saveData();render()}
+async function removeMember(rid,mid){if(!isAdmin||!confirm('Remover este membro da hierarquia?'))return;const r=ranks.find(x=>x.id===rid);r.membros=r.membros.filter(m=>m.id!==mid);await saveData();render()}
+async function deleteRank(id){if(!isAdmin||!confirm('Remover esta patente e todos os seus membros?'))return;ranks=ranks.filter(r=>r.id!==id);editId=null;await saveData();renderEditor()}
+async function moveRank(id,d){if(!isAdmin)return;const i=ranks.findIndex(r=>r.id===id),j=i+d;if(j<0||j>=ranks.length)return;[ranks[i],ranks[j]]=[ranks[j],ranks[i]];await saveData();render()}
+function editRank(id){editId=id;page='editar';render()}
+document.querySelectorAll('nav button').forEach(b=>b.addEventListener('click',()=>{if(b.dataset.page==='editar'&&!isAdmin){toast('Faça login como administrador.');return}page=b.dataset.page;render()}));
+$('#loginBtn').onclick=openLogin;$('#logoutBtn').onclick=async()=>{await sb.auth.signOut();toast('Sessão encerrada.');await checkAdmin(null)};
+$('#loginForm').onsubmit=async e=>{e.preventDefault();const f=new FormData(e.currentTarget);const {data,error}=await sb.auth.signInWithPassword({email:f.get('email'),password:f.get('password')});if(error){toast('Falha no login: '+error.message);return}closeLogin();await checkAdmin(data.session);if(!isAdmin){await sb.auth.signOut();await checkAdmin(null);toast('Esta conta não tem permissão de administrador.');return}toast('Login administrativo realizado.')};
+$('#themeBtn').onclick=()=>{document.body.classList.toggle('dark');localStorage.setItem('grr-hierarquia-theme',document.body.classList.contains('dark')?'dark':'light')};
+if(localStorage.getItem('grr-hierarquia-theme')==='dark')document.body.classList.add('dark');
+(async()=>{const {data:{session}}=await sb.auth.getSession();await checkAdmin(session);await loadData();sb.auth.onAuthStateChange((_event,s)=>{setTimeout(()=>checkAdmin(s),0)});sb.channel('grr-hierarquia-live')
+ .on('postgres_changes',{event:'*',schema:'public',table:'grr_hierarquia'},payload=>{if(payload.new?.ranks&&Array.isArray(payload.new.ranks)){
+   if(saveInProgress)return;
+   ranks=payload.new.ranks;
+   $('#liveStatus').textContent='Supabase conectado · sincronizado em tempo real';
+   render();
+  }})
+ .subscribe(status=>{const el=$('#liveStatus');if(status==='SUBSCRIBED')el.textContent='Supabase conectado · tempo real ativo';else if(status==='CHANNEL_ERROR'||status==='TIMED_OUT')el.textContent='Supabase: erro no tempo real';else if(status==='CLOSED')el.textContent='Supabase: tempo real desconectado'});
+})();
+</script>
+</body></html>
